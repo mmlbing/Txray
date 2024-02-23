@@ -29,4 +29,17 @@ func InitServiceShell(shell *ishell.Shell) {
 			xray.Stop()
 		},
 	})
+	// Generate
+	shell.AddCmd(&ishell.Cmd{
+		Name: "gen",
+		Help: "生成配置文件",
+		Func: func(c *ishell.Context) {
+			if len(c.Args) == 1 {
+				xray.Generate(c.Args[0])
+			} else {
+				xray.Generate(strconv.Itoa(manage.Manager.SelectedIndex()))
+			}
+
+		},
+	})
 }
